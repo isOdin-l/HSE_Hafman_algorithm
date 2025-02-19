@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 // Узел
@@ -9,14 +10,19 @@ struct Node {
     Node *left, *right;
 
     // Конструктор
-    Node(unsigned char ch, int freq, Node *left = nullptr, Node *right = nullptr)
+    Node(unsigned char ch, int symb, Node *left = nullptr, Node *right = nullptr)
             : ch(ch), symb(symb), left(left), right(right) {}
 };
 
-
-
-
-
+// Это сохранение кодов в таблице вместе с обходом дерева
+void encode(Node* root, string str, unordered_map<unsigned char, string>& hf_Code) {
+    if (!root) return;
+    if (!root->left && !root->right) {
+        hf_Code[root->ch] = str;
+    }
+    encode(root->left, str + "0", hf_Code);
+    encode(root->right, str + "1", hf_Code);
+}
 
 
 int main(){
