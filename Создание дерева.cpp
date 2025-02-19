@@ -25,6 +25,9 @@ void encode(Node* root, string str, unordered_map<unsigned char, string>& hf_Cod
 }
 Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned char, string>& build_Hf_Tree) {
     unordered_map<unsigned char, int> symb;
+    for (unsigned char byte : data) {
+        symb[byte]++;
+    }
 }
 int main(){
 };
