@@ -12,6 +12,12 @@ void analyzeCompression(const string& input_file, const string& compress_file, c
     decompress(compress_file, decompress_file);
     auto endDecompression = chrono::high_resolution_clock::now();
 
-    
+    // Получение размера файлов
+    size_t originalSize = getFileSize(input_file);
+    size_t compressedSize = getFileSize(compress_file);
 
+    // Вычисление коэффа сжатия
+    double compressionRatio = static_cast<double>(originalSize) / compressedSize;
+
+    
 
