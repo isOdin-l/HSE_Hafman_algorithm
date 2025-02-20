@@ -19,5 +19,17 @@ void analyzeCompression(const string& input_file, const string& compress_file, c
     // Вычисление коэффа сжатия
     double compressionRatio = static_cast<double>(originalSize) / compressedSize;
 
-    
+    // Вывод результатов
+    cout << "Анализ эффективности для файла: " << input_file << endl;
+    cout << "Размер исходного файла: " << originalSize << " байт" << endl;
+    cout << "Размер сжатого файла: " << compressedSize << " байт" << endl;
+    cout << "Коэффициент сжатия: " << compressionRatio << endl;
+    cout << "Время сжатия: "
+         << chrono::duration_cast<chrono::milliseconds>(endCompression - startCompression).count()
+         << " мс" << endl;
+    cout << "Время декомпрессии: "
+         << chrono::duration_cast<chrono::milliseconds>(endDecompression - startDecompression).count()
+         << " мс" << endl;
+}
+
 
