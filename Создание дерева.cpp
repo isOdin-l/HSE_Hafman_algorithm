@@ -41,7 +41,14 @@ Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned ch
     for (auto list : symb) {
          pq.push(new Node(list.first, list.second));
     }
+    while (pq.size() != 1) {
+        Node *left = pq.top();
+        pq.pop();
+        Node *right = pq.top();
+        pq.pop();
 
+        int sum = left->symb + right->symb;
+    }
 }
 int main(){
 };
