@@ -7,4 +7,11 @@ void analyzeCompression(const string& input_file, const string& compress_file, c
     compress(input_file, compress_file);
     auto endCompression = chrono::high_resolution_clock::now();
 
+    // Измерение времени декомпрессии
+    auto startDecompression = chrono::high_resolution_clock::now();
+    decompress(compress_file, decompress_file);
+    auto endDecompression = chrono::high_resolution_clock::now();
+
+    
+
 
