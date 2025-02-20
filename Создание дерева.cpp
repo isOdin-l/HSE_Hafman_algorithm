@@ -31,7 +31,7 @@ void encode(Node* root, string str, unordered_map<unsigned char, string>& hf_Cod
     encode(root->right, str + "1", hf_Code);
 }
 // 1. Создание дерева Хаффмана
-Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned char, string>& build_Hf_Tree) {
+Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned char, string>& hf_Code) {
     unordered_map<unsigned char, int> symb;
     for (unsigned char byte : data) {
         symb[byte]++;
@@ -46,9 +46,13 @@ Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned ch
         pq.pop();
         Node *right = pq.top();
         pq.pop();
-
         int sum = left->symb + right->symb;
+        pq.push(new Node('\0', sum, left, right));
     }
+    Node* root = pq.top();
+    encode(root, "",hf_Code);
+    return root;
+
 }
 int main(){
 };
