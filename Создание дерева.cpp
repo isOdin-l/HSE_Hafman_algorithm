@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <queue>
 
 using namespace std;
 // Узел
@@ -34,6 +35,11 @@ Node* build_Hf_Tree(const vector<unsigned char>& data, unordered_map<unsigned ch
     unordered_map<unsigned char, int> symb;
     for (unsigned char byte : data) {
         symb[byte]++;
+    }
+//Заполняет приоритетную очередь узлами
+    priority_queue<Node*, vector<Node*>,  comp> pq;
+    for (auto list : symb) {
+         pq.push(new Node(list.first, list.second));
     }
 
 }
