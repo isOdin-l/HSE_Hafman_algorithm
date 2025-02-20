@@ -13,3 +13,6 @@ void decompressData(Node* root, const string& compressed_filename, const string&
         cout << "Cannot open file for reading!" << endl;
         return;
     }
+    
+    char* remaining_bits; //кол-во ост. битов
+    inFile.read(reinterpret_cast<char*>(&remaining_bits), sizeof(remaining_bits));
