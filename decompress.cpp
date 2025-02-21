@@ -27,14 +27,6 @@ void decompress(Node* root, const string& compressed_filename, const string& dec
         decodedBits.resize(decodedBits.size() - (8 - remaining_bits));
     }
     inFile.close();
-    
-    char byte;
-    //читаем файл побайтово и преобразуем каждый байт в последовательность битов
-    while (inFile.read(&byte, sizeof(byte))) {
-        for (int i = 0; i < 8; ++i) {
-            decodedBits.push_back((byte >> (7 - i)) & 1); //каждый бит из байта добавили в массив декодированных битов
-        }
-    }
 
     vector<unsigned char> decodedData;
     Node* current = root;

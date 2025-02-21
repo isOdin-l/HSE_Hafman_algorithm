@@ -8,25 +8,24 @@
 #include "Hafman_tree.h"
 #include "Compress.h"
 #include "Decompress.h"
+#include "Analyze.h"
 
 using namespace std;
 
 int main(){
-    string input_file = "input.txt";
-    string compress_file = "compress.bin";
-    string decompress_file = "decompress.txt";
+    setlocale(LC_ALL, "ru_RU.UTF-8");
 
-    ifstream inputFile(input_file, ios::binary);
-    if (!inputFile) {
-        cout << "Cannot open input file!" << endl;
-        return -1;
+    vector<vector<string>> files = {
+        {"input", "txt"},  // Текстовый файл
+        {"input", "bmp"},  // Изображение
+        {"input", "wav"}   // Аудио
+    };
+
+    for (int i = 0; i < files.size(); ++i) {
+        string file = files[i][0] + "." + files[i][1];
+        string compressedFile = files[i][0] + "_" + files[i][1] + "_comp.bin";
+        string decompressedFile = files[i][0] + "_decomp." + files[i][1];
+        
+        analyzeCompression(file, compressedFile, decompressedFile);
     }
-
-    vector<unsigned char> data((istreambuf_iterator<char>(inputFile)), istreambuf_iterator<char>());
-    inputFile.close();
-
-    unordered_map<unsigned char, string> huffman_code;
-    Node* root = build_Hf_Tree(data, huffman_code);
-    compress(data, huffman_code, compress_file);
-    decompress(root, compress_file, decompress_file);
 }
